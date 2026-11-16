@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.proyect.viewController.RecepcionistasAdminViewController">
+    <padding>
+        <Insets top="12" right="16" bottom="12" left="16"/>
+    </padding>
+    <TableView fx:id="tblRecepcionistas" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colDocumento" text="Documento" prefWidth="100"/>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="180"/>
+            <TableColumn fx:id="colCorreo" text="Correo" prefWidth="200"/>
+            <TableColumn fx:id="colTelefono" text="Teléfono" prefWidth="110"/>
+            <TableColumn fx:id="colUsuario" text="Usuario" prefWidth="110"/>
+            <TableColumn fx:id="colContratacion" text="Contratación" prefWidth="110"/>
+        </columns>
+    </TableView>
+    <HBox spacing="8">
+        <TextField fx:id="txtNombre" promptText="Nombre" prefWidth="170"/>
+        <TextField fx:id="txtDocumento" promptText="Documento" prefWidth="110"/>
+        <TextField fx:id="txtCorreo" promptText="Correo" prefWidth="170"/>
+        <TextField fx:id="txtTelefono" promptText="Teléfono" prefWidth="110"/>
+    </HBox>
+    <HBox spacing="8">
+        <TextField fx:id="txtUsuario" promptText="Usuario" prefWidth="130"/>
+        <PasswordField fx:id="txtContrasena" promptText="Contraseña" prefWidth="130"/>
+        <DatePicker fx:id="dpContratacion" promptText="Contratación"/>
+    </HBox>
+    <HBox spacing="8">
+        <Button text="Registrar nuevo" onAction="#registrar"/>
+        <Button text="Guardar cambios del seleccionado" onAction="#editar"/>
+        <Button text="Desvincular seleccionado" onAction="#desvincular"/>
+    </HBox>
+    <Label fx:id="lblMensaje" wrapText="true"/>
+</VBox>

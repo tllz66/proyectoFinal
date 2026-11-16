@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.proyect.viewController.ApartamentosAdminViewController">
+    <padding>
+        <Insets top="12" right="16" bottom="12" left="16"/>
+    </padding>
+    <TableView fx:id="tblApartamentos" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="colCodigo" text="Código" prefWidth="70"/>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="170"/>
+            <TableColumn fx:id="colDormitorios" text="Dorm." prefWidth="60"/>
+            <TableColumn fx:id="colCapacidad" text="Capacidad" prefWidth="80"/>
+            <TableColumn fx:id="colBaja" text="Tarifa baja" prefWidth="110"/>
+            <TableColumn fx:id="colMedia" text="Tarifa media" prefWidth="110"/>
+            <TableColumn fx:id="colAlta" text="Tarifa alta" prefWidth="110"/>
+        </columns>
+    </TableView>
+    <HBox spacing="8">
+        <TextField fx:id="txtCodigo" promptText="Código" prefWidth="80"/>
+        <TextField fx:id="txtNombre" promptText="Nombre" prefWidth="170"/>
+        <TextField fx:id="txtDormitorios" promptText="Dormitorios" prefWidth="90"/>
+        <TextField fx:id="txtCapacidad" promptText="Capacidad" prefWidth="90"/>
+        <TextField fx:id="txtCaracteristicas" promptText="Características" prefWidth="300"/>
+    </HBox>
+    <HBox spacing="8">
+        <TextField fx:id="txtBaja" promptText="Tarifa baja" prefWidth="110"/>
+        <TextField fx:id="txtMedia" promptText="Tarifa media" prefWidth="110"/>
+        <TextField fx:id="txtAlta" promptText="Tarifa alta" prefWidth="110"/>
+    </HBox>
+    <HBox spacing="8">
+        <Button text="Registrar nuevo" onAction="#registrar"/>
+        <Button text="Modificar seleccionado" onAction="#modificar"/>
+        <Button text="Eliminar seleccionado" onAction="#eliminar"/>
+    </HBox>
+    <Label fx:id="lblMensaje" wrapText="true"/>
+</VBox>

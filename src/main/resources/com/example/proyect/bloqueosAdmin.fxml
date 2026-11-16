@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.proyect.viewController.BloqueosAdminViewController">
+    <padding>
+        <Insets top="12" right="16" bottom="12" left="16"/>
+    </padding>
+    <Label text="Bloqueos de apartamentos (mantenimiento, uso del propietario...)"/>
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <ComboBox fx:id="cmbApartamento" promptText="Apartamento" prefWidth="200"/>
+        <Label text="Inicio:"/>
+        <DatePicker fx:id="dpInicio"/>
+        <Label text="Fin:"/>
+        <DatePicker fx:id="dpFin"/>
+    </HBox>
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <TextField fx:id="txtMotivo" promptText="Motivo" prefWidth="380"/>
+        <Button text="Registrar bloqueo" onAction="#registrar"/>
+    </HBox>
+    <Label fx:id="lblMensaje" wrapText="true"/>
+    <ListView fx:id="lstBloqueos" VBox.vgrow="ALWAYS"/>
+</VBox>

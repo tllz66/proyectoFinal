@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.proyect.viewController.ApartamentosRecepcionViewController">
+    <padding>
+        <Insets top="12" right="16" bottom="12" left="16"/>
+    </padding>
+    <TableView fx:id="tblApartamentos" prefHeight="200">
+        <columns>
+            <TableColumn fx:id="colCodigo" text="Código" prefWidth="80"/>
+            <TableColumn fx:id="colNombre" text="Nombre" prefWidth="200"/>
+            <TableColumn fx:id="colEstado" text="Estado" prefWidth="180"/>
+            <TableColumn fx:id="colMotivo" text="Motivo fuera de servicio" prefWidth="320"/>
+        </columns>
+    </TableView>
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label text="Nuevo estado:"/>
+        <ComboBox fx:id="cmbEstado" prefWidth="200"/>
+        <TextField fx:id="txtMotivo" promptText="Motivo (si es fuera de servicio)" prefWidth="260"/>
+        <Button text="Cambiar estado" onAction="#cambiarEstado"/>
+    </HBox>
+    <HBox alignment="CENTER_LEFT" spacing="8">
+        <Label text="Novedad:"/>
+        <ComboBox fx:id="cmbTipoNovedad" prefWidth="130"/>
+        <TextField fx:id="txtDescripcion" promptText="Descripción" prefWidth="360"/>
+        <Button text="Registrar novedad" onAction="#registrarNovedad"/>
+    </HBox>
+    <Label fx:id="lblMensaje" wrapText="true"/>
+    <Label text="Novedades del apartamento seleccionado:"/>
+    <ListView fx:id="lstNovedades" VBox.vgrow="ALWAYS"/>
+</VBox>

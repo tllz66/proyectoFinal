@@ -101,6 +101,11 @@
                     <fx:include source="misReservas.fxml"/>
                 </content>
             </Tab>
+            <Tab text="Mi perfil">
+                <content>
+                    <fx:include source="perfilHuesped.fxml"/>
+                </content>
+            </Tab>
         </TabPane>
     </center>
 </BorderPane>

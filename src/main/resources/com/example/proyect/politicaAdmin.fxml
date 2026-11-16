@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="12" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.proyect.viewController.PoliticaAdminViewController">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+    <Label text="Política de cancelación" style="-fx-font-size: 16px; -fx-font-weight: bold;"/>
+    <Label fx:id="lblVigente" wrapText="true"/>
+    <GridPane hgap="10" vgap="10">
+        <Label text="Horas para reembolso total:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtHorasTotal" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+        <Label text="Horas para retención parcial:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtHorasParcial" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+        <Label text="Porcentaje retenido (0 a 100):" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+        <TextField fx:id="txtPorcentaje" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    </GridPane>
+    <Button text="Guardar política" onAction="#guardar"/>
+    <Label fx:id="lblMensaje" wrapText="true"/>
+</VBox>

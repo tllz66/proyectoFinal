@@ -1,8 +1,8 @@
 package com.example.proyect.viewController;
 
-import com.example.proyect.model.Rol;
 import com.example.proyect.App;
 import com.example.proyect.controller.SistemaController;
+import com.example.proyect.model.Rol;
 import com.example.proyect.model.Usuario;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -36,12 +36,21 @@ public class LoginViewController {
 
         try {
             if (autenticado.getRol() == Rol.HUESPED) {
-                App.mostrar("huesped.fxml", 900, 560);
+                App.mostrar("huesped.fxml", 900, 600);
             } else if (autenticado.getRol() == Rol.RECEPCIONISTA) {
-                App.mostrar("recepcion.fxml", 1000, 640);
+                App.mostrar("recepcion.fxml", 1000, 680);
             } else {
-                App.mostrar("principal.fxml", 720, 460);
+                App.mostrar("administrador.fxml", 1100, 700);
             }
+        } catch (IOException e) {
+            lblMensaje.setText("No se pudo abrir la pantalla: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void abrirRegistro() {
+        try {
+            App.mostrar("registro.fxml", 460, 560);
         } catch (IOException e) {
             lblMensaje.setText("No se pudo abrir la pantalla: " + e.getMessage());
         }

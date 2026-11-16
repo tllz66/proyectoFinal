@@ -28,6 +28,16 @@
                     <fx:include source="reservasRecepcion.fxml"/>
                 </content>
             </Tab>
+            <Tab text="Nueva reserva">
+                <content>
+                    <fx:include source="nuevaReservaRecepcion.fxml"/>
+                </content>
+            </Tab>
+            <Tab text="Apartamentos">
+                <content>
+                    <fx:include source="apartamentosRecepcion.fxml"/>
+                </content>
+            </Tab>
         </TabPane>
     </center>
 </BorderPane>
