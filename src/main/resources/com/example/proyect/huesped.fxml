@@ -2,13 +2,17 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Spinner?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
@@ -60,6 +64,36 @@
                             </TableColumn>
                         </columns>
                     </TableView>
+                </VBox>
+            </Tab>
+            <Tab text="Cotizar y reservar">
+                <VBox spacing="10">
+                    <padding>
+                        <Insets top="16" right="16" bottom="16" left="16"/>
+                    </padding>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Apartamento:"/>
+                        <ComboBox fx:id="cmbApartamento" prefWidth="260"/>
+                        <Label text="Entrada:"/>
+                        <DatePicker fx:id="dpEntradaR"/>
+                        <Label text="Salida:"/>
+                        <DatePicker fx:id="dpSalidaR"/>
+                    </HBox>
+                    <HBox alignment="CENTER_LEFT" spacing="10">
+                        <Label text="Ocupante:"/>
+                        <TextField fx:id="txtNombreOcupante" promptText="Nombre" prefWidth="200"/>
+                        <Label text="Nació:"/>
+                        <DatePicker fx:id="dpNacimientoOcupante"/>
+                        <Button text="Agregar" onAction="#agregarOcupante"/>
+                        <Button text="Quitar seleccionado" onAction="#quitarOcupante"/>
+                    </HBox>
+                    <ListView fx:id="lstOcupantes" prefHeight="110"/>
+                    <HBox spacing="10">
+                        <Button text="Cotizar" onAction="#cotizar"/>
+                        <Button text="Crear reserva (Portal)" onAction="#crearReserva"/>
+                    </HBox>
+                    <Label fx:id="lblMensajeReserva" wrapText="true"/>
+                    <TextArea fx:id="txtCotizacion" editable="false" VBox.vgrow="ALWAYS"/>
                 </VBox>
             </Tab>
         </TabPane>
