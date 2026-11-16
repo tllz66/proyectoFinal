@@ -26,6 +26,10 @@ public class PoliticaEscalonada implements PoliticaCancelacion {
         this.porcentajeRetencionParcial = porcentajeRetencionParcial;
     }
 
+    public long getHorasReembolsoTotal() { return horasReembolsoTotal; }
+    public long getHorasRetencionParcial() { return horasRetencionParcial; }
+    public double getPorcentajeRetencionParcial() { return porcentajeRetencionParcial; }
+
     @Override
     public long calcularReembolso(long valorEstancia, long totalPagado, long horasAntelacion) {
         if (horasAntelacion > horasReembolsoTotal) {

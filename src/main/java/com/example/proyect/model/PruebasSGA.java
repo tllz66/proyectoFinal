@@ -156,6 +156,44 @@ public class PruebasSGA {
         verificar("Check-out de RES-HOY", true, acepta(() -> demo.hacerCheckOut("RES-HOY")));
         verificar("A103 queda Pendiente de preparación", EstadoApartamento.PENDIENTE_PREPARACION,
                 demo.buscarApartamento("A103").getEstado());
+        System.out.println("=== Administración (modificar, editar, política, eliminar) ===");
+        long valorAntes = demo.buscarReserva("RES-001").getValorEstancia();
+        verificar("Modificar apartamento A101", true, acepta(() ->
+                demo.modificarApartamento("A101", "Cafetal Plus", "Balcón", 100000, 130000, 170000)));
+        verificar("El apartamento quedó con el nuevo nombre", "Cafetal Plus", demo.buscarApartamento("A101").getNombre());
+        verificar("La reserva existente conserva su valor congelado", valorAntes,
+                demo.buscarReserva("RES-001").getValorEstancia());
+        verificar("Modificar con tarifa 0 se rechaza", false, acepta(() ->
+                demo.modificarApartamento("A101", "X", "", 0, 1, 1)));
+        verificar("Editar datos de un usuario", true, acepta(() ->
+                demo.editarUsuario("1001", "Ana R. Ruiz", "ana.ruiz@mail.com", "3109999999")));
+        verificar("Usuario editado", "Ana R. Ruiz", demo.buscarUsuario("1001").getNombre());
+        verificar("Editar con nombre vacío se rechaza", false, acepta(() ->
+                demo.editarUsuario("1001", " ", "a@a.com", "1")));
+        PoliticaEscalonada nuevaPolitica = new PoliticaEscalonada(240, 72, 0.40);
+        demo.configurarPolitica(nuevaPolitica);
+        verificar("La reserva existente conserva su política", false,
+                demo.buscarReserva("RES-001").getPolitica() == nuevaPolitica);
+        verificar("Eliminar apartamento con reserva activa se rechaza", false, acepta(() ->
+                demo.eliminarApartamento("A101")));
+        demo.registrarApartamento(new Apartamento("A105", "Nuevo", 1, 2, "", 50000, 60000, 70000));
+        verificar("Eliminar (lógico) un apartamento sin reservas", true, acepta(() -> demo.eliminarApartamento("A105")));
+        verificar("Un apartamento eliminado no aparece disponible", false,
+                demo.consultarDisponibles(LocalDate.now().plusDays(200), LocalDate.now().plusDays(201), 1)
+                        .contains(demo.buscarApartamento("A105")));
+        Huesped nuevoHuesped = new Huesped("Pedro", "2001", "p@mail.com", "300", "pedro", "p123", LocalDate.of(2000, 1, 1));
+        verificar("Registrar huésped nuevo", true, acepta(() -> demo.registrarUsuario(nuevoHuesped)));
+        verificar("Documento repetido se rechaza", false, acepta(() -> demo.registrarUsuario(
+                new Huesped("Otro", "2001", "o@mail.com", "300", "otro", "o123", LocalDate.of(2000, 1, 1)))));
+        verificar("Usuario repetido se rechaza", false, acepta(() -> demo.registrarUsuario(
+                new Huesped("Otro", "2002", "o@mail.com", "300", "pedro", "o123", LocalDate.of(2000, 1, 1)))));
+        Recepcionista contratada = new Recepcionista("Rosa", "8002", "r@mail.com", "300", "rosa", "r123", LocalDate.now());
+        verificar("Contratar recepcionista", true, acepta(() -> demo.registrarUsuario(contratada)));
+        verificar("Desvincular recepcionista", true, acepta(() -> demo.desvincularUsuario("8002")));
+        verificar("Un desvinculado no puede iniciar sesión", null, demo.iniciarSesion("rosa", "r123"));
+        verificar("Reserva Pendiente sin anticipo: el mensaje dice cuánto falta", true,
+                motivo(() -> demo.confirmarReserva("RES-003")).contains("faltan"));
+
         System.out.println();
         System.out.println("RESULTADO FINAL: " + correctas + " de " + total + " verificaciones correctas");
     }

@@ -71,6 +71,14 @@ public class Apartamento implements Auditable {
         this.activo = false;
     }
 
+    public void modificarDatos(String nombre, String caracteristicas) {
+        if (nombre == null || nombre.isBlank()) {
+            throw new IllegalArgumentException("El nombre es obligatorio");
+        }
+        this.nombre = nombre;
+        this.caracteristicas = caracteristicas == null ? "" : caracteristicas;
+    }
+
     public void setTarifas(long baja, long media, long alta) {
         if (baja <= 0 || media <= 0 || alta <= 0) {
             throw new IllegalArgumentException("Las tarifas deben ser positivas");

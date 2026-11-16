@@ -37,6 +37,8 @@ public class LoginViewController {
         try {
             if (autenticado.getRol() == Rol.HUESPED) {
                 App.mostrar("huesped.fxml", 900, 560);
+            } else if (autenticado.getRol() == Rol.RECEPCIONISTA) {
+                App.mostrar("recepcion.fxml", 1000, 640);
             } else {
                 App.mostrar("principal.fxml", 720, 460);
             }

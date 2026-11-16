@@ -67,6 +67,23 @@ public class Alojamiento {
         return null;
     }
 
+    /** Edita los datos modificables de un usuario (nombre, correo y teléfono). */
+    public boolean editarUsuario(String documento, String nombre, String correo, String telefono) {
+        Usuario u = buscarUsuario(documento);
+        if (u == null) {
+            rechazar("No existe un usuario con el documento " + documento);
+        }
+        if (!u.isActivo()) {
+            rechazar("El usuario está desvinculado");
+        }
+        try {
+            u.actualizarDatos(nombre, correo, telefono);
+        } catch (IllegalArgumentException ex) {
+            rechazar(ex.getMessage());
+        }
+        return true;
+    }
+
     public boolean desvincularUsuario(String documento) {
         Usuario u = buscarUsuario(documento);
         if (u == null) {
@@ -98,6 +115,24 @@ public class Alojamiento {
             rechazar("Ya existe un apartamento con el código " + apartamento.getCodigo());
         }
         listApartamentos.add(apartamento);
+        return true;
+    }
+
+    /** Modifica nombre, características y tarifas. Las reservas ya creadas conservan su valor congelado. */
+    public boolean modificarApartamento(String codigo, String nombre, String caracteristicas,
+                                        long tarifaBaja, long tarifaMedia, long tarifaAlta) {
+        Apartamento a = exigirApartamento(codigo);
+        if (!a.isActivo()) {
+            rechazar("El apartamento fue eliminado");
+        }
+        if (nombre == null || nombre.isBlank()) {
+            rechazar("El nombre es obligatorio");
+        }
+        if (tarifaBaja <= 0 || tarifaMedia <= 0 || tarifaAlta <= 0) {
+            rechazar("Las tarifas deben ser mayores que cero");
+        }
+        a.modificarDatos(nombre, caracteristicas);
+        a.setTarifas(tarifaBaja, tarifaMedia, tarifaAlta);
         return true;
     }
 
@@ -269,7 +304,9 @@ public class Alojamiento {
         }
         long anticipo = r.getCanal().calcularAnticipo(r.getValorEstancia());
         if (r.getCanal().exigeAnticipo() && r.getFolio().calcularTotalPagos() < anticipo) {
-            rechazar("Falta pagar el anticipo de " + dinero(anticipo));
+            long pagado = r.getFolio().calcularTotalPagos();
+            rechazar("Falta completar el anticipo de " + dinero(anticipo)
+                    + " (pagado " + dinero(pagado) + ", faltan " + dinero(anticipo - pagado) + ")");
         }
         r.cambiarEstado(EstadoReserva.CONFIRMADA);
         return true;
