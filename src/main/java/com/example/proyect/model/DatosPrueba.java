@@ -26,9 +26,9 @@ public class DatosPrueba {
         LocalDate hoy = LocalDate.now();
 
         // Usuarios
-        aloj.registrarUsuario(new Administrador("Sofía Herrera", "9000", "admin@aparta.co", "3000000000",
+        aloj.registrarUsuario(new Administrador("Santiago Téllez", "9000", "admin@aparta.co", "3000000000",
                 "admin", "admin123"));
-        aloj.registrarUsuario(new Recepcionista("Marta Díaz", "8001", "marta@aparta.co", "3001111111",
+        aloj.registrarUsuario(new Recepcionista("Jhan Martinez", "8001", "jcmh@aparta.co", "3001111111",
                 "recep", "recep123", hoy.minusYears(2)));
         Huesped ana = new Huesped("Ana Ruiz", "1001", "ana@mail.com", "3102222222",
                 "ana", "ana123", LocalDate.of(1990, 5, 14));
