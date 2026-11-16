@@ -1,9 +1,7 @@
 package com.example.proyect;
 
-import com.example.proyect.viewController.PrimaryViewController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
@@ -11,30 +9,21 @@ import java.io.IOException;
 
 public class App extends Application {
 
-    private Stage primaryStage;
+    private static Stage ventana;
 
     @Override
-    public void start(Stage primaryStage) throws IOException {
-        this.primaryStage = primaryStage;
-        this.primaryStage.setTitle("Mi Proyecto Parcial");
-        openViewPrincipal();
+    public void start(Stage stage) throws IOException {
+        ventana = stage;
+        stage.setTitle("SGA - Aparta-Suites UQ");
+        mostrar("login.fxml", 420, 340);
+        stage.show();
     }
 
-    public void openViewPrincipal() {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource("primary.fxml"));
-            Parent rootLayout = loader.load();
-
-            PrimaryViewController primaryController = loader.getController();
-            primaryController.setApp(this);
-
-            Scene scene = new Scene(rootLayout);
-            primaryStage.setScene(scene);
-            primaryStage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    /** Cambia la pantalla de la ventana. El .fxml está en resources/com/example/proyect. */
+    public static void mostrar(String fxml, double ancho, double alto) throws IOException {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource(fxml));
+        ventana.setScene(new Scene(loader.load(), ancho, alto));
+        ventana.centerOnScreen();
     }
 
     public static void main(String[] args) {
