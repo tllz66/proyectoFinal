@@ -96,6 +96,11 @@
                     <TextArea fx:id="txtCotizacion" editable="false" VBox.vgrow="ALWAYS"/>
                 </VBox>
             </Tab>
+            <Tab text="Mis reservas">
+                <content>
+                    <fx:include source="misReservas.fxml"/>
+                </content>
+            </Tab>
         </TabPane>
     </center>
 </BorderPane>
