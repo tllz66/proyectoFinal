@@ -8,6 +8,9 @@ module com.example.proyect {
     opens com.example.proyect.viewController to javafx.fxml;
     exports com.example.proyect.viewController;
 
-    //opens com.example.proyect.controller to javafx.fxml;
-    //exports com.example.proyect.controller;
+    opens com.example.proyect.controller to javafx.fxml;
+    exports com.example.proyect.controller;
+
+    exports com.example.proyect.model;
+    opens com.example.proyect.model to javafx.base;
 }
