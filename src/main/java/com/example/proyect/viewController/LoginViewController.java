@@ -34,6 +34,9 @@ public class LoginViewController {
             return;
         }
 
+        // Regla del enunciado: las reservas Pendientes de más de 24 h se cancelan automáticamente
+        SistemaController.getInstancia().getAlojamiento().cancelarPendientesVencidas(java.time.LocalDateTime.now());
+
         try {
             if (autenticado.getRol() == Rol.HUESPED) {
                 App.mostrar("huesped.fxml", 900, 600);

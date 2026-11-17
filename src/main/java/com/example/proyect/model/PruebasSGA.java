@@ -142,8 +142,8 @@ public class PruebasSGA {
         Alojamiento demo = DatosPrueba.crearAlojamientoConDatos();
         verificar("Cuatro apartamentos", 4, demo.getApartamentos().size());
         verificar("Cinco reservas", 5, demo.getReservas().size());
-        verificar("Login del administrador", Rol.ADMINISTRADOR, demo.iniciarSesion("admin", "admin123").getRol());
-        verificar("Login con clave incorrecta", null, demo.iniciarSesion("admin", "xxx"));
+        verificar("Login del administrador", Rol.ADMINISTRADOR, demo.iniciarSesion("stellez", "Admin#2026").getRol());
+        verificar("Login con clave incorrecta", null, demo.iniciarSesion("stellez", "xxx"));
         verificar("RES-002 (Portal) quedó Confirmada por el anticipo", EstadoReserva.CONFIRMADA,
                 demo.buscarReserva("RES-002").getEstado());
         verificar("RES-003 (Portal sin pagar) quedó Pendiente", EstadoReserva.PENDIENTE,

@@ -8,9 +8,9 @@ import java.util.List;
  * Datos para demostraciones.
  *
  * Usuarios (usuario / contraseña):
- *   admin / admin123      (Administrador)
- *   recep / recep123      (Recepcionista)
- *   ana / ana123, carlos / carlos123, laura / laura123   (Huéspedes)
+ *   stellez / Admin#2026        (Administrador)
+ *   camila / Recep#2026         (Recepcionista)
+ *   valentina / Valen#2026, andres / Andres#2026, daniela / Dani#2026   (Huéspedes)
  *
  * Reserva RES-HOY: Confirmada con entrada hoy en A103, lista para hacer check-in.
  */
@@ -26,16 +26,16 @@ public class DatosPrueba {
         LocalDate hoy = LocalDate.now();
 
         // Usuarios
-        aloj.registrarUsuario(new Administrador("Santiago Téllez", "9000", "admin@aparta.co", "3000000000",
-                "admin", "admin123"));
-        aloj.registrarUsuario(new Recepcionista("Jhan Martinez", "8001", "jcmh@aparta.co", "3001111111",
-                "recep", "recep123", hoy.minusYears(2)));
-        Huesped ana = new Huesped("Ana Ruiz", "1001", "ana@mail.com", "3102222222",
-                "ana", "ana123", LocalDate.of(1990, 5, 14));
-        Huesped carlos = new Huesped("Carlos Pérez", "1002", "carlos@mail.com", "3203333333",
-                "carlos", "carlos123", LocalDate.of(1985, 9, 2));
-        Huesped laura = new Huesped("Laura Gómez", "1003", "laura@mail.com", "3154444444",
-                "laura", "laura123", LocalDate.of(1998, 1, 27));
+        aloj.registrarUsuario(new Administrador("Santiago Téllez", "9000", "stellez@aparta.co", "3000000000",
+                "stellez", "Admin#2026"));
+        aloj.registrarUsuario(new Recepcionista("Jhan Martinez", "8001", "jhan.martinez@aparta.co", "3001111111",
+                "jhan", "Recep#2026", hoy.minusYears(2)));
+        Huesped ana = new Huesped("Valentina Mora", "1001", "valentina.mora@mail.com", "3102222222",
+                "valentina", "Valen#2026", LocalDate.of(1990, 5, 14));
+        Huesped carlos = new Huesped("Andrés Cruz", "1002", "andres.cruz@mail.com", "3203333333",
+                "andres", "Andres#2026", LocalDate.of(1985, 9, 2));
+        Huesped laura = new Huesped("Daniela Vargas", "1003", "daniela.vargas@mail.com", "3154444444",
+                "daniela", "Dani#2026", LocalDate.of(1998, 1, 27));
         aloj.registrarUsuario(ana);
         aloj.registrarUsuario(carlos);
         aloj.registrarUsuario(laura);
@@ -63,16 +63,16 @@ public class DatosPrueba {
 
         // Reserva Directa confirmada, para mostrar el cálculo y los reportes
         reservar(aloj, "RES-001", "A101", ana, hoy.plusDays(5), hoy.plusDays(7),
-                List.of(new Ocupante("Ana Ruiz", LocalDate.of(1990, 5, 14)),
-                        new Ocupante("Pedro Ruiz", LocalDate.of(1988, 3, 3))),
+                List.of(new Ocupante("Valentina Mora", LocalDate.of(1990, 5, 14)),
+                        new Ocupante("Sergio Mora", LocalDate.of(1988, 3, 3))),
                 new CanalDirecto());
         aloj.confirmarReserva("RES-001");
 
         // Reserva Portal con anticipo pagado (el anticipo la confirma). Incluye un menor de 6 años.
         reservar(aloj, "RES-002", "A102", carlos, hoy.plusDays(10), hoy.plusDays(13),
-                List.of(new Ocupante("Carlos Pérez", LocalDate.of(1985, 9, 2)),
-                        new Ocupante("Lucía Pérez", LocalDate.of(1987, 6, 20)),
-                        new Ocupante("Mateo Pérez", hoy.minusYears(3))),
+                List.of(new Ocupante("Andrés Cruz", LocalDate.of(1985, 9, 2)),
+                        new Ocupante("Lucía Cruz", LocalDate.of(1987, 6, 20)),
+                        new Ocupante("Mateo Cruz", hoy.minusYears(3))),
                 new CanalPortal());
         long anticipo = aloj.buscarReserva("RES-002").getCanal()
                 .calcularAnticipo(aloj.buscarReserva("RES-002").getValorEstancia());
@@ -80,18 +80,18 @@ public class DatosPrueba {
 
         // Reserva Portal sin pagar: queda Pendiente
         reservar(aloj, "RES-003", "A104", laura, hoy.plusDays(20), hoy.plusDays(22),
-                List.of(new Ocupante("Laura Gómez", LocalDate.of(1998, 1, 27))),
+                List.of(new Ocupante("Daniela Vargas", LocalDate.of(1998, 1, 27))),
                 new CanalPortal());
 
         // Reserva Externa
         reservar(aloj, "RES-EXT-1", "A101", carlos, hoy.plusDays(15), hoy.plusDays(16),
-                List.of(new Ocupante("Carlos Pérez", LocalDate.of(1985, 9, 2))),
+                List.of(new Ocupante("Andrés Cruz", LocalDate.of(1985, 9, 2))),
                 new CanalExterno("BKG-778123"));
 
         // Reserva que entra hoy, ya confirmada: sirve para demostrar el check-in
         reservar(aloj, "RES-HOY", "A103", ana, hoy, hoy.plusDays(2),
-                List.of(new Ocupante("Ana Ruiz", LocalDate.of(1990, 5, 14)),
-                        new Ocupante("Pedro Ruiz", LocalDate.of(1988, 3, 3))),
+                List.of(new Ocupante("Valentina Mora", LocalDate.of(1990, 5, 14)),
+                        new Ocupante("Sergio Mora", LocalDate.of(1988, 3, 3))),
                 new CanalDirecto());
         aloj.confirmarReserva("RES-HOY");
     }
